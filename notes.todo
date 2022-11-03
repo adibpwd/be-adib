@@ -1,0 +1,39 @@
+Database :
+    Customer :
+        ✔ name char(50) @done(22-11-02 18:59)
+        ✔ phone char(12) @done(22-11-02 18:59)
+        ✔ address text @done(22-11-02 18:59)
+    Orders :
+        ✔ customer_id @done(22-11-02 18:59)
+        ✔ code char(12) @done(22-11-02 18:59)
+        ✔ resi_number char(20) @done(22-11-02 18:59)
+    Shipments :
+        ✔ order_id @done(22-11-02 18:59)
+        ✔ code char(20) @done(22-11-02 18:59)
+        ✔ status enum(waiting, send, cancel) @done(22-11-02 18:59)
+    Seeder :
+        ✔ Seeder customer, order, shipments @done(22-11-02 23:03)
+    Test 1 :
+        Api :
+            ✔ 1. endpoint customer jakarta || get cutomer by city @done(22-11-02 23:03)
+            ✔ 2. endpoint status terkirim (sent) dan relasi ke 3 table tersebut @done(22-11-02 23:03)
+            ✔ 3. endpoint status gagal dan terikirim (cancel dan sent) dari bekasi di bulan january 2022 sampai april 2022 @done(22-11-02 23:03)
+            ✔ endpoint 2 dan 3 || filter by status ( bisa multiple ), city, min_date dan max_date @done(22-11-02 23:03)
+    Test 2 dan 3 :
+        Parkir :
+            Blok :
+                ✔ name @done(22-11-02 23:16)
+                ✔ max_slot @done(22-11-02 23:16)
+            SlotBlok :
+                ✔ blok_id @done(22-11-02 23:16)
+                ✔ name @done(22-11-02 23:16)
+        Api :
+            ✔ endpoint check ketersediaan slot dari blok tertentu @done(22-11-03 00:52)
+            ✔ endpoint mengisi slot ke blok tertentu @done(22-11-03 00:52)
+            ✔ endpoint kendaraan keluar nanti slot berkurang dari blok sesuai kendaraan berada di blok mana @done(22-11-03 00:52)
+        Documentasion API SPEC :
+            ☐ Swagger
+    Test 4 :
+        ☐ Loop bilangan, di kelipatan 7, keluarin text 'bestada'
+            ☐ Contoh : input 15, maka result yang di print 1,2,3,4,5,6,bestada,8,9,10,11,12,13,bestada,sukses
+        ☐  [3,7,1,2,6,7,8,9,12,5,3,12] di simpan di variable, dan check data yang sama di gabung, dan sort dari yang terkecil

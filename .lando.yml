@@ -1,0 +1,23 @@
+name: bestada-laravel
+recipe: laravel
+config:
+  webroot: public
+  composer_version: '2.3.5'  
+  php: "8.1"
+  # Sometime without nginx, worked or no
+  via: nginx:1.18
+  xdebug: true
+  services:
+    appserver:
+      build_as_root:
+        # - apt-get update
+        # - apt-get install -y autoconf
+        # - docker-php-ext-install sockets
+        # - apt install php-mysql
+    pma:
+      type: phpmyadmin
+      hosts:
+        - database
+  proxy:
+    pma:
+      - pma.bestada.lndo.site

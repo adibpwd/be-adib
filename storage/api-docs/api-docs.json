@@ -1,0 +1,403 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test BestAda OpenApi Demo Documentation",
+        "description": "OpenApi For Test BestAda BackendDeveloper",
+        "contact": {
+            "email": "adibtambak@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:49159",
+            "description": "My Whatsapp : +6281575823200"
+        }
+    ],
+    "paths": {
+        "/api/test-bestada/customers": {
+            "get": {
+                "tags": [
+                    "Point-1"
+                ],
+                "summary": "Get Customer By City",
+                "description": "Task : Buatlah query untuk menampilkan semua customer yang berasal dari kota Jakarta</br></br>Saya simpel in, jadi ambil daftar customer dari kotanya",
+                "operationId": "getCustomer",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "City From Customer",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully to get customer"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": "3"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test 3"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test 3@gmail.com"
+                                                        },
+                                                        "email_verified_at": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "phone": {
+                                                            "type": "string",
+                                                            "example": "082229229123"
+                                                        },
+                                                        "address": {
+                                                            "type": "string",
+                                                            "example": "bekasi"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2022-11-02T14:15:08.000000Z"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2022-11-02T14:15:08.000000Z"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test-bestada/orders": {
+            "post": {
+                "tags": [
+                    "Point-1"
+                ],
+                "summary": "Get Order Filter By City, Status[], Min/Max Date",
+                "description": "Task : <br>Buatlah query untuk menampilkan semua informasi pembelian yang sudah terkirim dari seluruh customer (mencangkup seluruh informasi pada ketiga table dan harus readable)\n     *                      </br>Buatlah query untuk menampilkan jumlah pengiriman gagal dan pengiriman berhasil semua customer yang berasal dari kota Bekasi dari bulan Januari 2022 sampai bulan April 2022..\n     *                      </br></br>Saya buat 2 task tersebut menjadi 1 endpoint, di filter berdasarkan kota, status ( bisa lebih dari 1 statusya ) dan min atau max date",
+                "operationId": "getOrder",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "city": {
+                                        "description": "City",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Status",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "min_date": {
+                                        "description": "Min Date",
+                                        "type": "string",
+                                        "example": "2022-01-01"
+                                    },
+                                    "max_date": {
+                                        "description": "Max Date",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully to get orders"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "id": 3,
+                                                    "user_id": "21",
+                                                    "code": "8292",
+                                                    "resi_number": "9358854874075849",
+                                                    "created_at": "2022-11-02T14:38:53.000000Z",
+                                                    "updated_at": "2022-11-02T14:15:08.000000Z",
+                                                    "shipment": {
+                                                        "id": 1,
+                                                        "order_id": 1,
+                                                        "code": "8883",
+                                                        "status": "sent",
+                                                        "created_at": "2022-04-02T00:00:00.000000Z",
+                                                        "updated_at": "2022-11-02T14:38:53.000000Z"
+                                                    },
+                                                    "customer": {
+                                                        "id": 21,
+                                                        "name": "test 21",
+                                                        "phone": "0821522121",
+                                                        "address": "jakarta"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test-bestada/bloks": {
+            "get": {
+                "tags": [
+                    "Point-2&3"
+                ],
+                "summary": "Get Detail Blok",
+                "description": "Task : <br>API untuk mengecek ketersediaan blok dan slot\n     *                          </br></br>Saya buat endpoint detail blok, dimana menampilkan max slot dan jumlah ter isi",
+                "operationId": "getDetailBlok",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name Blok",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully to get detail blok"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "id": 1,
+                                                    "name": "blok 1",
+                                                    "max_slot": 4,
+                                                    "created_at": "2022-11-02T16:40:41.000000Z",
+                                                    "updated_at": "2022-11-02T16:40:41.000000Z",
+                                                    "parking_vehicle_count": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test-bestada/bloks/fill": {
+            "post": {
+                "tags": [
+                    "Point-2&3"
+                ],
+                "summary": "Fill Slot Blok",
+                "description": "Task : <br>API untuk kendaraan parkir (mengisi slot parkir pada blok tertentu)\n     *                          </br></br>Saya buat menggunakan nama plat kendaraan dan blok_id",
+                "operationId": "fillBlok",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "blok_id": {
+                                        "description": "Blok ID",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "name": {
+                                        "description": "Name Vehicle",
+                                        "type": "string",
+                                        "example": "H 9090 HD"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully to fill blok"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "blok_id": "3",
+                                                    "name": "H 9090 HD",
+                                                    "updated_at": "2022-11-02T17:16:07.000000Z",
+                                                    "created_at": "2022-11-02T17:16:07.000000Z",
+                                                    "id": 6
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test-bestada/bloks/out": {
+            "post": {
+                "tags": [
+                    "Point-2&3"
+                ],
+                "summary": "Out Slot From Blok",
+                "description": "Task : <br>API untuk kendaraan parkir keluar\n     *                          </br></br>Saya buat menggunakan id vehicle nya untuk menghapus dari blok",
+                "operationId": "outFromBlok",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "description": "ID",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully to out vehicle from blok"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test-bestada/point-4/{no}": {
+            "get": {
+                "tags": [
+                    "Point-4"
+                ],
+                "summary": "Test Point 4",
+                "description": "Task : <br>1. Buatlah program untuk melakukan pengecekan apakah suatu bilangan adalah kelipatan dari 7, jika benar maka cetak “bestada” tanpa tanda kutip dan jika bukan maka cetak bilangannya dan disetiap akhir batas bilangan yang dicek maka cetak “sukses” tanpa tanda kutip. Misal:-> Input: range 15, output: 1,2,3,4,5,6,bestada,8,9,10,11,12,13,bestada,sukses.\n     *                          </br>2. Buatlah program untuk mengecek nilai yang sama pada array dibawah ini lalu susun arraynya dari yang terbesar ke yang terkecil:-> [3,7,1,2,6,7,8,9,12,5,3,12]\n     *                          </br></br>Saya jadikan 1 result",
+                "operationId": "TestPoint4",
+                "parameters": [
+                    {
+                        "name": "no",
+                        "in": "path",
+                        "description": "Nomor Maksimal loop task nomor 1 di Point 4",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "string",
+                                            "example": [
+                                                "1,2,3,4,5,6,bestada,8,9,10,11,12,13,bestada,sukses",
+                                                "12,9,8,7,6,5,3,2,1"
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "TestProject",
+            "description": "API Endpoints of Test Projects"
+        }
+    ]
+}
